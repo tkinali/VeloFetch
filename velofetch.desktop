@@ -1,0 +1,16 @@
+[Desktop Entry]
+Name=VeloFetch
+Name[tr]=VeloFetch
+GenericName=Download Manager
+GenericName[tr]=İndirme Yöneticisi
+Comment=A lightweight download manager for Linux
+Comment[tr]=Linux için hafif bir indirme yöneticisi
+Exec=vf %u
+Icon=velofetch
+Terminal=false
+Type=Application
+Categories=Network;FileTools;
+Keywords=download;manager;internet;file;
+StartupNotify=true
+StartupWMClass=VeloFetch
+MimeType=x-scheme-handler/vf;

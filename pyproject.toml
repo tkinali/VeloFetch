@@ -1,0 +1,70 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "velofetch"
+version = "1.0.0"
+description = "A fast, lightweight download manager for Linux with segmented downloads, resume and browser integration"
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "Tuncay KINALI" }]
+requires-python = ">=3.10"
+keywords = ["download", "manager", "linux", "downloader"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: End Users/Desktop",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "requests>=2.25.0",
+    "PySide6-Essentials>=6.5",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.5",
+]
+media = [
+    "yt-dlp>=2024.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/tkinali/VeloFetch"
+Repository = "https://github.com/tkinali/VeloFetch"
+Issues = "https://github.com/tkinali/VeloFetch/issues"
+
+[project.scripts]
+vf = "vf.__main__:main"
+velofetch = "vf.__main__:main"
+
+[tool.setuptools]
+packages = ["vf", "vf.core", "vf.qtgui", "vf.utils", "vf.locales"]
+
+[tool.setuptools.package-data]
+# Ship the application icons inside the wheel; vf/qtgui/theme.py loads them
+# through importlib.resources.
+vf = ["assets/*.png"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+extend-exclude = ["build", "dist", "venv", ".venv", ".zcode"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+# E501: the translation tables and the embedded integration page keep long
+# single-line literals that cannot be wrapped without hurting readability.
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+# Package __init__ modules deliberately re-export their submodules' names.
+"**/__init__.py" = ["F401"]

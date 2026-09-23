@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "VeloFetch",
+  "version": "1.0.0",
+  "description": "VeloFetch download manager integration",
+  "permissions": [
+    "contextMenus",
+    "cookies",
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png"
+    },
+    "default_title": "VeloFetch"
+  }
+}
