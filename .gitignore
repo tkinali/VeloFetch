@@ -32,3 +32,6 @@ config.json
 
 *.zip
 *.zip.part
+
+# Local editor/agent config
+.claude/

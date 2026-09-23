@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VeloFetch — Linux için hızlı indirme yöneticisi</title>
+<meta name="description" content="VeloFetch, Linux için hızlı ve hafif bir indirme yöneticisi: segmentli paralel indirme, kaldığı yerden devam, cookie aktaran tarayıcı entegrasyonu ve komut satırı. Python ve Qt 6 ile yazıldı.">
+<link rel="icon" href="icon.png" type="image/png">
+<link rel="canonical" href="https://tkinali.github.io/VeloFetch/tr.html">
+<meta property="og:title" content="VeloFetch — Linux için hızlı indirme yöneticisi">
+<meta property="og:description" content="Segmentli paralel indirme, yeniden başlatsanız bile kaldığı yerden devam ve tarayıcı entegrasyonu. Python + Qt 6, MIT lisanslı.">
+<meta property="og:image" content="https://tkinali.github.io/VeloFetch/screenshots/tr/main-window.png">
+<meta property="og:url" content="https://tkinali.github.io/VeloFetch/tr.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://tkinali.github.io/VeloFetch/">
+<link rel="alternate" hreflang="tr" href="https://tkinali.github.io/VeloFetch/tr.html">
+<link rel="alternate" hreflang="x-default" href="https://tkinali.github.io/VeloFetch/">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip" href="#content">İçeriğe geç</a>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="tr.html"><img src="icon.png" width="28" height="28" alt="">VeloFetch</a>
+    <nav>
+      <a href="#features">Özellikler</a>
+      <a href="#install" class="hide-sm">Kurulum</a>
+      <a href="#browser" class="hide-sm">Tarayıcı</a>
+      <a href="https://github.com/tkinali/VeloFetch">GitHub</a>
+      <a class="lang" href="./">English</a>
+    </nav>
+  </div>
+</header>
+
+<main id="content">
+
+<div class="hero">
+  <div class="wrap">
+    <h1>İndirmeler yarım kalmaz.</h1>
+    <p class="tagline">
+      Linux için hızlı ve hafif bir indirme yöneticisi — paralel segmentli indirme, bilgisayarı
+      yeniden başlatsanız bile kaldığı yerden devam, tarayıcınızdan doğrudan devralınan bağlantılar.
+    </p>
+
+    <div class="badges">
+      <span class="badge">Python 3.10+</span>
+      <span class="badge">Qt 6 · PySide6</span>
+      <span class="badge">X11 &amp; Wayland</span>
+      <span class="badge">MIT</span>
+      <span class="badge">Telemetri yok</span>
+    </div>
+
+    <div class="cta">
+      <a class="btn btn-primary" href="#install">Kurulum</a>
+      <a class="btn" href="https://github.com/tkinali/VeloFetch">GitHub'da görüntüle</a>
+    </div>
+
+    <div class="install-line">
+      <code id="cmd">git clone https://github.com/tkinali/VeloFetch.git &amp;&amp; cd VeloFetch &amp;&amp; ./install.sh</code>
+      <button class="copy" type="button" data-copy="#cmd" data-done="Kopyalandı" data-fail="Seçildi">Kopyala</button>
+    </div>
+
+    <img class="shot" src="screenshots/tr/main-window.png" width="1240" height="690" alt="VeloFetch ana penceresi, farklı durumlarda beş indirme">
+  </div>
+</div>
+
+<section id="features">
+  <div class="wrap">
+    <h2>Ne yapar</h2>
+    <p class="section-sub">
+      Bu bir masaüstü uygulaması, web paneline bakılan bir arka plan servisi değil: Qt 6 penceresi,
+      tepsi simgesi ve çalışan uygulamaya bağlanan bir komut satırı aracı. Electron yok, arka planda
+      servis yok, dışarıya veri gitmiyor.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h3><span class="dot" aria-hidden="true" style="background:#7aa2f7"></span>Segmentli indirme</h3>
+        <p>
+          HTTP Range destekleyen sunucularda 8 MB'tan büyük dosyalar paralel bağlantılara bölünür —
+          varsayılan olarak dört bağlantı. VeloFetch önce gerçek bir <code>206</code> denemesi yapar;
+          sunucu buna uymazsa tek bağlantıya düşer.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3><span class="dot" aria-hidden="true" style="background:#9ece6a"></span>Baştan değil, kaldığı yerden</h3>
+        <p>
+          Duraklatma HTTP Range üzerinden çalışır; sürdürdüğünüzde indirme baştan başlamaz, kaldığı
+          bayttan devam eder. İlerleme SQLite'a, segment konumları da ayrı bir dosyaya sürekli
+          kaydedilir — uygulamayı kapatmanız, hatta makineyi yeniden başlatmanız indirmeyi
+          kaybettirmez.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3><span class="dot" aria-hidden="true" style="background:#e0af68"></span>Mantıklı yeniden denemeler</h3>
+        <p>
+          Bağlantı koptuğunda istek, giderek artan bekleme süreleriyle yeniden denenir. Kalıcı
+          hatalarda — <code>401</code>, <code>403</code>, <code>410</code> — boşuna uğraşmaz, durumu
+          doğrudan size bildirir.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3><span class="dot" aria-hidden="true" style="background:#7dcfff"></span>Tarayıcı entegrasyonu</h3>
+        <p>
+          Chrome, Chromium, Brave, Vivaldi ve Firefox'ta sağ tık → <em>VeloFetch ile İndir</em>.
+          Sayfanın cookie'leri de aktarıldığından, oturum açmanızı gerektiren dosyalar da sorunsuz
+          indirilir. Diğer tarayıcılar için hiçbir kurulum istemeyen yer imi çözümü var.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3><span class="dot" aria-hidden="true" style="background:#f7768e"></span>Doğrulama ve sınırlar</h3>
+        <p>
+          İndirmeyi eklerken beklenen SHA-256 özetini yapıştırın; sonuç kartın üzerinde görünür. Bant
+          genişliğine başka yerde ihtiyacınız olduğunda KB/s sınırı koyabilirsiniz — bu sınır her
+          indirme için ayrı ayrı uygulanır.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3><span class="dot" aria-hidden="true" style="background:#a9a9bd"></span>Masaüstü için tasarlandı</h3>
+        <p>
+          Koyu Qt 6 arayüzü; durum filtreleri, arama ve her kartın kendi sağ tık menüsü. Pencereyi
+          kapattığınızda sistem tepsisi indirmeleri sürdürür, bir indirme bittiğinde masaüstü
+          bildirimi alırsınız. Arayüz Türkçe ve İngilizce; sistem dilinize göre otomatik seçilir.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="screenshots">
+  <div class="wrap">
+    <h2>Uygulamaya bir bakış</h2>
+    <p class="section-sub">Her görsel, güncel sürümdeki gerçek bir oturumdan alındı.</p>
+
+    <div class="shots-grid">
+      <figure>
+        <img class="shot" src="screenshots/tr/add-dialog.png" width="560" height="584" loading="lazy" decoding="async" alt="İndirme ekleme penceresi: URL, kayıt konumu, dosya adı, SHA-256 ve cookie alanları">
+        <figcaption>İndirme ekleme — isteğe bağlı özet ve cookie</figcaption>
+      </figure>
+      <figure>
+        <img class="shot" src="screenshots/tr/settings.png" width="620" height="940" loading="lazy" decoding="async" alt="Ayarlar penceresi: dil, klasör, motor, segmentli indirme, davranış ve API bölümleri">
+        <figcaption>Ayarlar — motor ayarları ve yerel API anahtarı</figcaption>
+      </figure>
+    </div>
+
+    <figure style="margin:18px 0 0">
+      <img class="shot" src="screenshots/tr/history.png" width="1240" height="690" loading="lazy" decoding="async" alt="İndirme geçmişi sayfası: boyut, tarih, süre ve ortalama hızla dört tamamlanmış indirme">
+      <figcaption>Geçmiş — ayrıntı, yeniden indirme ve temizleme</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="install">
+  <div class="wrap">
+    <h2>Kurulum</h2>
+    <p class="section-sub">
+      Herhangi bir Linux dağıtımında Python 3.10 veya üzeri yeterli. Qt bir pip bağımlılığı olarak
+      geldiğinden ayrıca sistem Qt paketi kurmanız gerekmez.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Otomatik</h3>
+        <p>Sanal ortamı oluşturur, uygulamayı kurar, <code>vf</code> başlatıcısını ve uygulama menüsü girdisini ekler, API anahtarınızı üretir, tarayıcı eklentilerini yüklemeye hazır hale getirir.</p>
+<pre><code>git clone https://github.com/tkinali/VeloFetch.git
+cd VeloFetch
+./install.sh</code></pre>
+      </div>
+
+      <div class="card">
+        <h3>pip ile</h3>
+        <p><code>vf</code> ve <code>velofetch</code> komutlarını <code>PATH</code>'e ekler. Video siteleri için <code>media</code> ekiyle kurun.</p>
+<pre><code>pip install .
+<span class="tok-comment"># yt-dlp dahil:</span>
+pip install ".[media]"</code></pre>
+      </div>
+
+      <div class="card">
+        <h3>Kaynaktan</h3>
+        <p>Hiç kurmadan, doğrudan klonladığınız dizinden çalıştırın.</p>
+<pre><code>pip install -r requirements.txt
+python -m vf</code></pre>
+      </div>
+    </div>
+
+    <h2 style="margin-top:52px">Terminalden</h2>
+    <p class="section-sub">Komut satırı aracı, çalışan uygulamayla yerel API üzerinden haberleşir.</p>
+    <table>
+      <thead><tr><th>Komut</th><th>Yaptığı iş</th></tr></thead>
+      <tbody>
+        <tr><td><code>vf</code></td><td>Uygulamayı başlatır, zaten açıksa penceresini öne getirir</td></tr>
+        <tr><td><code>vf add &lt;url&gt;</code></td><td>İndirmeyi kuyruğa ekler — <code>-f</code> dosya adı, <code>-c</code> cookie</td></tr>
+        <tr><td><code>vf list</code></td><td>Tüm indirmeleri durumu ve ilerlemesiyle listeler</td></tr>
+        <tr><td><code>vf ping</code></td><td>Uygulamanın çalışıp çalışmadığını söyler</td></tr>
+        <tr><td><code>vf integration</code></td><td>Tarayıcı entegrasyonu adresini, anahtarınız gömülü olarak yazdırır</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="browser">
+  <div class="wrap">
+    <h2>Tarayıcı entegrasyonu</h2>
+    <p class="section-sub">
+      VeloFetch <code>127.0.0.1:9876</code> adresini dinler. Her istek API anahtarınızı taşımak
+      zorundadır; böylece rastgele bir web sayfası arkanızdan kuyruğa indirme ekleyemez.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Yer imi — kurulum istemez</h3>
+        <p>
+          <code>vf integration</code> komutunu çalıştırın, yazdırdığı adresi açın ve butonu yer imi
+          çubuğunuza sürükleyin. Herhangi bir sayfada bu yer imine tıkladığınızda o sayfanın URL'sini
+          ve cookie'lerini VeloFetch'e gönderir. Her tarayıcıda çalışır.
+        </p>
+        <p class="muted">
+          Yer imi yalnızca <code>document.cookie</code> ile görünen cookie'leri okuyabilir; oturum
+          cookie'leri genellikle <code>HttpOnly</code> olduğundan aktarılmaz. Onlar için eklentiyi
+          veya bir <code>cookies.txt</code> dosyasını kullanın.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Eklenti — sağ tık menüsü</h3>
+        <p>
+          <code>./install.sh</code>, anahtarınız yazılmış ve yüklenmeye hazır kopyalar bırakır.
+          Eklentiyi depodan değil <code>~/.local/share/velofetch/browser/</code> dizininden yükleyin;
+          depodaki kopya bilerek anahtarsız bırakıldığı için sunucu onu reddeder.
+        </p>
+        <p class="muted">
+          Chromium: <code>chrome://extensions</code> → Geliştirici modu → Paketlenmemiş öğe yükle.
+          Firefox: <code>about:debugging</code> → Geçici Eklenti Yükle.
+        </p>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>Yerel API varsayılan olarak dışarıya kapalıdır.</strong> Yalnızca loopback adresine
+      bağlanır; her uç nokta, sabit zamanlı karşılaştırılan bir anahtar ister. Bilerek bırakılmış iki
+      istisna var: uygulamanın zaten çalışıp çalışmadığını anlamak için kullanılan <code>/ping</code>
+      ve anahtar taşıyamayan CORS ön kontrol isteği. Loopback dışındaki <code>Host</code> başlıkları
+      DNS rebinding saldırısını engellemek için reddedilir,
+      <code>Access-Control-Allow-Origin</code> hiçbir zaman <code>*</code> olmaz. Anahtar ilk
+      çalıştırmada üretilir ve <code>0600</code> izinleriyle saklanır.
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>VeloFetch 1.0.0 · MIT · Tuncay KINALI</span>
+    <span>
+      <a href="https://github.com/tkinali/VeloFetch">Kaynak</a> ·
+      <a href="https://github.com/tkinali/VeloFetch/issues">Issue'lar</a> ·
+      <a href="./">English</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll(".copy").forEach(function (btn) {
+  var target = document.querySelector(btn.dataset.copy);
+  var label = btn.textContent;
+  function flash(text, cls) {
+    btn.textContent = text;
+    if (cls) { btn.classList.add(cls); }
+    setTimeout(function () { btn.textContent = label; btn.classList.remove("done"); }, 1800);
+  }
+  function selectInstead() {
+    // No clipboard API (non-secure origin, older browser) — select the text so the
+    // reader can copy it by hand instead of the button silently doing nothing.
+    var range = document.createRange();
+    range.selectNodeContents(target);
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    flash(btn.dataset.fail);
+  }
+  btn.addEventListener("click", function () {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(target.textContent).then(function () {
+        flash(btn.dataset.done, "done");
+      }, selectInstead);
+    } else {
+      selectInstead();
+    }
+  });
+});
+</script>
+
+</body>
+</html>

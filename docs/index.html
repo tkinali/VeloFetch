@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VeloFetch — a fast download manager for Linux</title>
+<meta name="description" content="VeloFetch is a fast, lightweight download manager for Linux: segmented parallel downloads, pause and resume, cookie-aware browser integration and a CLI. Built with Python and Qt 6.">
+<link rel="icon" href="icon.png" type="image/png">
+<link rel="canonical" href="https://tkinali.github.io/VeloFetch/">
+<meta property="og:title" content="VeloFetch — a fast download manager for Linux">
+<meta property="og:description" content="Segmented parallel downloads, resume across restarts, and browser integration. Python + Qt 6, MIT licensed.">
+<meta property="og:image" content="https://tkinali.github.io/VeloFetch/screenshots/main-window.png">
+<meta property="og:url" content="https://tkinali.github.io/VeloFetch/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="en" href="https://tkinali.github.io/VeloFetch/">
+<link rel="alternate" hreflang="tr" href="https://tkinali.github.io/VeloFetch/tr.html">
+<link rel="alternate" hreflang="x-default" href="https://tkinali.github.io/VeloFetch/">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip" href="#content">Skip to content</a>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="./"><img src="icon.png" width="28" height="28" alt="">VeloFetch</a>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#install" class="hide-sm">Install</a>
+      <a href="#browser" class="hide-sm">Browser</a>
+      <a href="https://github.com/tkinali/VeloFetch">GitHub</a>
+      <a class="lang" href="tr.html">Türkçe</a>
+    </nav>
+  </div>
+</header>
+
+<main id="content">
+
+<div class="hero">
+  <div class="wrap">
+    <h1>Downloads that finish.</h1>
+    <p class="tagline">
+      A fast, lightweight download manager for Linux — parallel segmented downloads,
+      resume that survives a restart, and downloads handed straight over from your browser.
+    </p>
+
+    <div class="badges">
+      <span class="badge">Python 3.10+</span>
+      <span class="badge">Qt 6 · PySide6</span>
+      <span class="badge">X11 &amp; Wayland</span>
+      <span class="badge">MIT</span>
+      <span class="badge">No telemetry</span>
+    </div>
+
+    <div class="cta">
+      <a class="btn btn-primary" href="#install">Install</a>
+      <a class="btn" href="https://github.com/tkinali/VeloFetch">View on GitHub</a>
+    </div>
+
+    <div class="install-line">
+      <code id="cmd">git clone https://github.com/tkinali/VeloFetch.git &amp;&amp; cd VeloFetch &amp;&amp; ./install.sh</code>
+      <button class="copy" type="button" data-copy="#cmd" data-done="Copied" data-fail="Selected">Copy</button>
+    </div>
+
+    <img class="shot" src="screenshots/main-window.png" width="1240" height="690" alt="The VeloFetch main window, with five downloads in different states">
+  </div>
+</div>
+
+<section id="features">
+  <div class="wrap">
+    <h2>What it does</h2>
+    <p class="section-sub">
+      A desktop app, not a daemon with a web panel: a Qt 6 window, a tray icon, and a CLI that talks
+      to the running instance. No Electron, no background service, nothing phoning home.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h3><span class="dot" aria-hidden="true" style="background:#7aa2f7"></span>Segmented downloads</h3>
+        <p>
+          Files over 8 MB are pulled over parallel byte-range connections — four by default — on
+          servers that support HTTP Range. VeloFetch sends a real <code>206</code> probe first and falls back to a
+          single stream when the server does not honour it.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3><span class="dot" aria-hidden="true" style="background:#9ece6a"></span>Resume, not restart</h3>
+        <p>
+          Pausing uses HTTP Range, so continuing picks up where it stopped. Progress is checkpointed
+          to SQLite and segment offsets to a sidecar file, so closing the app — or a reboot — is not a
+          lost download.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3><span class="dot" aria-hidden="true" style="background:#e0af68"></span>Retries that make sense</h3>
+        <p>
+          Connection errors back off exponentially. Permanent failures — <code>401</code>,
+          <code>403</code>, <code>410</code> — are reported instead of being retried pointlessly.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3><span class="dot" aria-hidden="true" style="background:#7dcfff"></span>Browser integration</h3>
+        <p>
+          Right-click → <em>Download with VeloFetch</em> in Chrome, Chromium, Brave, Vivaldi and
+          Firefox, with the page's cookies forwarded so login-protected files work. A bookmarklet
+          covers every other browser with nothing to install.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3><span class="dot" aria-hidden="true" style="background:#f7768e"></span>Verification &amp; limits</h3>
+        <p>
+          Paste an expected SHA-256 when adding a download and the verdict lands on the card. Cap a
+          download in KB/s when you need the bandwidth elsewhere — the cap applies per download.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3><span class="dot" aria-hidden="true" style="background:#a9a9bd"></span>Built for the desktop</h3>
+        <p>
+          Dark Qt 6 interface with filter chips, search and per-card context menus. System tray keeps
+          downloads running when you close the window, and a desktop notification tells you when one
+          is done. English and Turkish, following your system locale.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="screenshots">
+  <div class="wrap">
+    <h2>A look around</h2>
+    <p class="section-sub">Every screenshot is from a real session on the current build.</p>
+
+    <div class="shots-grid">
+      <figure>
+        <img class="shot" src="screenshots/add-dialog.png" width="560" height="584" loading="lazy" decoding="async" alt="The add-download dialog, with URL, save location, filename, SHA-256 and cookie fields">
+        <figcaption>Adding a download — optional checksum and cookies</figcaption>
+      </figure>
+      <figure>
+        <img class="shot" src="screenshots/settings.png" width="620" height="940" loading="lazy" decoding="async" alt="The settings window showing language, folder, engine, segmented, behaviour and API sections">
+        <figcaption>Settings — engine tuning and the local API token</figcaption>
+      </figure>
+    </div>
+
+    <figure style="margin:18px 0 0">
+      <img class="shot" src="screenshots/history.png" width="1240" height="690" loading="lazy" decoding="async" alt="The download history page listing four completed downloads with size, date, duration and average speed">
+      <figcaption>History — details, re-download and cleanup</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="install">
+  <div class="wrap">
+    <h2>Install</h2>
+    <p class="section-sub">
+      Python 3.10 or newer on any Linux distribution. Qt arrives as a pip dependency, so no system Qt
+      packages are needed.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Automatic</h3>
+        <p>Creates a virtualenv, installs the app, adds a <code>vf</code> launcher and an application-menu entry, generates your API token and stages the browser extensions.</p>
+<pre><code>git clone https://github.com/tkinali/VeloFetch.git
+cd VeloFetch
+./install.sh</code></pre>
+      </div>
+
+      <div class="card">
+        <h3>With pip</h3>
+        <p>Puts <code>vf</code> and <code>velofetch</code> on your <code>PATH</code>. Add the <code>media</code> extra for video sites.</p>
+<pre><code>pip install .
+<span class="tok-comment"># with yt-dlp:</span>
+pip install ".[media]"</code></pre>
+      </div>
+
+      <div class="card">
+        <h3>From source</h3>
+        <p>No installation at all — run it straight out of the checkout.</p>
+<pre><code>pip install -r requirements.txt
+python -m vf</code></pre>
+      </div>
+    </div>
+
+    <h2 style="margin-top:52px">From the terminal</h2>
+    <p class="section-sub">The CLI talks to the running app over the local API.</p>
+    <table>
+      <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td><code>vf</code></td><td>Launch the app, or focus the window that is already open</td></tr>
+        <tr><td><code>vf add &lt;url&gt;</code></td><td>Queue a download — <code>-f</code> filename, <code>-c</code> cookies</td></tr>
+        <tr><td><code>vf list</code></td><td>Show every download with its status and progress</td></tr>
+        <tr><td><code>vf ping</code></td><td>Check whether the app is running</td></tr>
+        <tr><td><code>vf integration</code></td><td>Print the browser-integration URL, token included</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="browser">
+  <div class="wrap">
+    <h2>Browser integration</h2>
+    <p class="section-sub">
+      VeloFetch listens on <code>127.0.0.1:9876</code>. Every request has to carry your API token, so
+      a random web page cannot queue downloads behind your back.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Bookmarklet — nothing to install</h3>
+        <p>
+          Run <code>vf integration</code>, open the URL it prints, and drag the button onto your
+          bookmarks bar. Clicking it on any page sends that page's URL and cookies over. Works in
+          every browser.
+        </p>
+        <p class="muted">
+          A bookmarklet only sees <code>document.cookie</code>, so <code>HttpOnly</code> session
+          cookies are not included — use the extension or a <code>cookies.txt</code> for those.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Extension — right-click menu</h3>
+        <p>
+          <code>./install.sh</code> stages ready-to-load copies with your token already written in.
+          Load them from <code>~/.local/share/velofetch/browser/</code>, not from the repository —
+          the copy in the repo deliberately carries no token.
+        </p>
+        <p class="muted">
+          Chromium: <code>chrome://extensions</code> → Developer mode → Load unpacked.
+          Firefox: <code>about:debugging</code> → Load Temporary Add-on.
+        </p>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>The local API is locked down by default.</strong> It binds to loopback only, every route
+      requires a token compared in constant time (the single-instance <code>/ping</code> and the CORS
+      preflight are the two deliberate exceptions), non-loopback <code>Host</code> headers are rejected
+      to block DNS rebinding, and <code>Access-Control-Allow-Origin</code> is never <code>*</code>. The
+      token is generated on first run and stored mode <code>0600</code>.
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>VeloFetch 1.0.0 · MIT · by Tuncay KINALI</span>
+    <span>
+      <a href="https://github.com/tkinali/VeloFetch">Source</a> ·
+      <a href="https://github.com/tkinali/VeloFetch/issues">Issues</a> ·
+      <a href="tr.html">Türkçe</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll(".copy").forEach(function (btn) {
+  var target = document.querySelector(btn.dataset.copy);
+  var label = btn.textContent;
+  function flash(text, cls) {
+    btn.textContent = text;
+    if (cls) { btn.classList.add(cls); }
+    setTimeout(function () { btn.textContent = label; btn.classList.remove("done"); }, 1800);
+  }
+  function selectInstead() {
+    // No clipboard API (non-secure origin, older browser) — select the text so the
+    // reader can copy it by hand instead of the button silently doing nothing.
+    var range = document.createRange();
+    range.selectNodeContents(target);
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    flash(btn.dataset.fail);
+  }
+  btn.addEventListener("click", function () {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(target.textContent).then(function () {
+        flash(btn.dataset.done, "done");
+      }, selectInstead);
+    } else {
+      selectInstead();
+    }
+  });
+});
+</script>
+
+</body>
+</html>
