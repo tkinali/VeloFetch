@@ -98,6 +98,8 @@ cd VeloFetch
 Betik bir sanal ortam oluşturur, uygulamayı kurar, `~/.local/bin` içine `vf` başlatıcısını bırakır,
 uygulama menüsü girdisini (`.desktop`) ve ikonları kaydeder, API token'ınızı üretir ve tarayıcı
 eklentilerini yüklemeye hazır biçimde `~/.local/share/velofetch/browser/` altına yerleştirir.
+Betik de uygulama gibi sistem dilinizi izler (Türkçe ve İngilizce); `./install.sh --lang=en` ile
+sabitleyebilirsiniz.
 
 Her şeyi kaldırmak için:
 

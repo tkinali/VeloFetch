@@ -96,8 +96,8 @@ cd VeloFetch
 
 The script creates a virtualenv, installs the app, drops a `vf` launcher in `~/.local/bin`, registers
 the application-menu entry and icons, generates your API token, and stages the browser extensions into
-`~/.local/share/velofetch/browser/` ready to load. Its console output is currently Turkish only; the
-app itself follows your system locale.
+`~/.local/share/velofetch/browser/` ready to load. Like the app, the installer follows your system
+locale (English and Turkish); force one with `./install.sh --lang=en`.
 
 Remove everything again with:
 
